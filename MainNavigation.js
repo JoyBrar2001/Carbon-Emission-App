@@ -7,6 +7,7 @@ import StatsScreen from './src/screens/StatsScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AntDesign, Entypo } from '@expo/vector-icons';
+import AppDetailsScreen from './src/screens/AppDetailsScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -68,6 +69,11 @@ const MainNavigation = () => {
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AppDetailsScreen"
+          component={AppDetailsScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
