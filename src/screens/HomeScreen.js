@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Dimensions, FlatList } from 'react-native';
 import React from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { homeScreenTiles } from '../constants/data';
 
 Entypo.loadFont();
 FontAwesome.loadFont();
@@ -21,45 +23,39 @@ const HomeScreen = () => {
         </View>
       </View>
 
-      <ScrollView vertical showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewStyles}>
+      <View style={styles.scrollViewStyles}>
         <Text className="text-white text-2xl font-semibold">Dashboard</Text>
-        <View className="flex flex-col w-full gap-4 mt-2 px-4 pb-20">
-          <View className="bg-white/20 flex flex-col gap-1 justify-center items-center rounded-xl px-6 py-3">
-            <Text className="text-white text-lg font-medium">Idle Appliactions</Text>
-            <Text className="text-white text-4xl font-semibold">10</Text>
-            <TouchableOpacity className="bg-black rounded-full px-4 py-1.5">
-              <Text className="text-white">Close Apps</Text>
-            </TouchableOpacity>
-          </View>
-          <View className="bg-white/20 flex flex-col gap-1 justify-center items-center rounded-xl px-6 py-3">
-            <Text className="text-white text-lg font-medium">Usused Startup apps</Text>
-            <Text className="text-white text-4xl font-semibold">6</Text>
-            <TouchableOpacity className="bg-black rounded-full px-4 py-1.5">
-              <Text className="text-white">Configure</Text>
-            </TouchableOpacity>
-          </View>
-          <View className="bg-white/20 flex flex-col gap-1 justify-center items-center rounded-xl px-6 py-3">
-            <Text className="text-white text-lg font-medium">Charger on for</Text>
-            <Text className="text-white text-4xl font-semibold">12 Hrs</Text>
-          </View>
-          <View className="bg-white/20 flex flex-col gap-1 justify-center items-center rounded-xl px-6 py-3">
-            <Text className="text-white text-lg font-medium">Accessories on</Text>
-            <Text className="text-white text-4xl font-semibold">3 Hrs</Text>
-          </View>
-          <View className="bg-white/20 flex flex-col gap-1 justify-center items-center rounded-xl px-6 py-3">
-            <Text className="text-white text-lg font-medium">Laptop idle time</Text>
-            <Text className="text-white text-4xl font-semibold">10 Hrs</Text>
-          </View>
-          <View className="bg-white/20 flex flex-col gap-1 justify-center items-center rounded-xl px-6 py-3">
-            <Text className="text-white text-lg font-medium">Last Restart</Text>
-            <Text className="text-white text-4xl font-semibold">24 Hrs ago</Text>
-          </View>
-          <View className="bg-white/20 flex flex-col gap-1 justify-center items-center rounded-xl px-6 py-3">
-            <Text className="text-white text-lg font-medium">Title</Text>
-            <Text className="text-white text-4xl font-semibold">info</Text>
-          </View>
+        <View className="flex flex-col w-full gap-4 mt-2 pb-20">
+
+          <FlatList
+            data={homeScreenTiles}
+            numColumns={2}
+            keyExtractor={item => item.title}
+            contentContainerStyle={{ marginHorizontal: 'auto', paddingTop: 5, paddingBottom: 25 }}
+            showsVerticalScrollIndicator={false}
+            renderItem={(item) => {
+              return (
+                <LinearGradient
+                  colors={['#4B8E4BCC', '#4B8E4B11']}
+                  start={{ x: 0.5, y: 0 }}
+                  end={{ x: 0.5, y: 1 }}
+                  style={{ width: Dimensions.get('window').width * 0.45 }}
+                  className="flex flex-col justify-center items-center rounded-xl overflow-hidden py-3 mx-auto mb-4"
+                >
+                  <Text className="text-white text-lg font-medium text-center mt-2">{item.item.title}</Text>
+                  <Text className={`text-white ${item.item.subtitle?.length > 4 ? 'text-2xl' : 'text-4xl'}  font-semibold text-center mt-2`}>{item.item.value}{item.item.subtitle ? ` ${item.item.subtitle}` : ''}</Text>
+                  {item.item.button ?
+                    <TouchableOpacity className="bg-black rounded-full mt-2 px-4 py-1.5">
+                      <Text className="text-white">{item.item.button}</Text>
+                    </TouchableOpacity>
+                    : <View className="pt-6"></View>
+                  }
+                </LinearGradient>
+              )
+            }}
+          />
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
@@ -72,6 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: 'start',
     alignItems: 'center',
     paddingTop: 24,
+    flex: 1,
   },
   mainContainer: {
     display: 'grid',
