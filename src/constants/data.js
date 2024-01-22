@@ -79,7 +79,7 @@ export const appDetails = [
     {
         imageSrc: require('../../assets/AppIcons/Snapchat.png'),
         name: 'Snapchat',
-        percentage: 75.08,
+        percentage: 26.12,
         storage: 240.87,
         usage: 3.4,
         usageData: [ 12, 8, 7.4, 3.4, 9.2, 2.3, 4 ],
@@ -87,7 +87,7 @@ export const appDetails = [
     {
         imageSrc: require('../../assets/AppIcons/Youtube.png'),
         name: 'Youtube',
-        percentage: 54.32,
+        percentage: 12.98,
         storage: 240.87,
         usage: 3.4,
         usageData: [ 7.8, 8.5, 9, 12, 4.2, 10.9, 3 ],
@@ -95,7 +95,7 @@ export const appDetails = [
     {
         imageSrc: require('../../assets/AppIcons/Discord.png'),
         name: 'Discord',
-        percentage: 27.12,
+        percentage: 10.05,
         storage: 240.87,
         usage: 3.4,
         usageData: [ 12, 8, 7.4, 3.4, 9.2, 2.3, 4 ],
@@ -103,7 +103,7 @@ export const appDetails = [
     {
         imageSrc: require('../../assets/AppIcons/GoogleMaps.png'),
         name: 'Google Maps',
-        percentage: 11.98,
+        percentage: 8.56,
         storage: 240.87,
         usage: 3.4,
         usageData: [ 7.8, 8.5, 9, 12, 4.2, 10.9, 3 ],

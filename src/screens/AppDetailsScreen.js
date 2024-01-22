@@ -4,7 +4,7 @@ import { Entypo, FontAwesome, Feather } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { weekLabels } from '../constants/data';
-import { LineChart } from 'react-native-chart-kit';
+import { LineChart, ProgressChart } from 'react-native-chart-kit';
 import { LinearGradient } from 'expo-linear-gradient'
 
 const AppDetailsScreen = ({ route, navigation }) => {
@@ -97,6 +97,36 @@ const AppDetailsScreen = ({ route, navigation }) => {
                 marginVertical: 8,
                 borderRadius: 16
               }}
+              />
+          </View>
+
+          <View className="mx-auto">
+            <Text className="text-white text-center text-2xl font-medium capitalize my-2">App Details</Text>
+            <ProgressChart 
+              data={{
+                labels: ["CPU Usage", "GPU Usage" ],
+                data: [0.35, 0.45]
+              }}
+              width={Dimensions.get("window").width * 0.9}
+              height={240}
+              strokeWidth={16}
+              radius={32}
+              chartConfig={{
+                backgroundGradientFrom: "#4B8E4B",
+                backgroundGradientTo: "#4B8E4B",
+                decimalPlaces: 0,
+                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                style: {
+                  borderRadius: 10,
+                  paddingRight: 10,
+                },
+              }}
+              style={{
+                marginVertical: 8,
+                borderRadius: 16,
+              }}
+              hideLegend={false}
             />
           </View>
         </View>

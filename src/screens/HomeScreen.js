@@ -36,7 +36,7 @@ const HomeScreen = () => {
             renderItem={(item) => {
               return (
                 <LinearGradient
-                  colors={['#4B8E4BCC', '#4B8E4B11']}
+                  colors={['#FFFFFF33', '#FFFFFF11']}
                   start={{ x: 0.5, y: 0 }}
                   end={{ x: 0.5, y: 1 }}
                   style={{ width: Dimensions.get('window').width * 0.45 }}
